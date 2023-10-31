@@ -1,5 +1,5 @@
-
 import './App.scss'
+import Osc1 from './components/Osc1';
 
 // create our audio context as one instance; our react state will match our web audio current state
 const actx = new AudioContext();
@@ -19,10 +19,14 @@ osc1.connect(gain1);
 gain1.connect(out);
 
 //start it up
-osc1.start();
+// osc1.start();
 
 
 function App() {
+
+  const changeFreqOsc1 = e => {
+    console.log(e.target.value)
+  }
 
 //notice with these buttons, you still can't start more than once; this is why Tone.js is important TODO
   return (
@@ -31,6 +35,7 @@ function App() {
       <h1>Alec-Synth</h1>
       <button onClick={() => osc1.start()}>start</button>
       <button onClick={() => osc1.stop()}>stop</button>
+      <Osc1 changeFreq={changeFreqOsc1}/>
     </div>
     </>
   )
