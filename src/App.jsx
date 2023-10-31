@@ -1,10 +1,11 @@
 import './App.scss'
 import Osc1 from './components/Osc1';
+import React from 'react';
+import { useState } from 'react';
 
 // create our audio context as one instance; our react state will match our web audio current state
 const actx = new AudioContext();
 
-//save our state, and update it in our audio context and react state
 
 //this is our out, think of it like an amp
 const out = actx.destination;
@@ -24,8 +25,11 @@ gain1.connect(out);
 
 function App() {
 
+  const [osc1Freq, setOsc1Freq] = useState(osc1.frequency.value);
+
   const changeFreqOsc1 = e => {
     const {value} = e.target;
+    setOsc1Freq(value);
     osc1.frequency.value = value;
   }
 
@@ -36,7 +40,7 @@ function App() {
       <h1>Alec-Synth</h1>
       <button onClick={() => osc1.start()}>start</button>
       <button onClick={() => osc1.stop()}>stop</button>
-      <Osc1 changeFreq={changeFreqOsc1}/>
+      <Osc1 changeFreq={changeFreqOsc1} freq={osc1Freq}/>
     </div>
     </>
   )
