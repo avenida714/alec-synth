@@ -25,7 +25,8 @@ gain1.connect(out);
 function App() {
 
   const changeFreqOsc1 = e => {
-    console.log(e.target.value)
+    const {value} = e.target;
+    osc1.frequency.value = value;
   }
 
 //notice with these buttons, you still can't start more than once; this is why Tone.js is important TODO
