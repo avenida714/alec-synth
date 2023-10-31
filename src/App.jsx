@@ -20,13 +20,17 @@ gain1.connect(out);
 
 //start it up
 osc1.start();
+
+
 function App() {
 
-
+//notice with these buttons, you still can't start more than once; this is why Tone.js is important TODO
   return (
     <>
     <div className='App'>
       <h1>Alec-Synth</h1>
+      <button onClick={() => osc1.start()}>start</button>
+      <button onClick={() => osc1.stop()}>stop</button>
     </div>
     </>
   )
