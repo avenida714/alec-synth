@@ -6,18 +6,25 @@ body {
 
 .control {
   background: rgb(2, 15, 2);
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 1.5rem;
   border-radius: 2.5rem;
-  h3{
+
+  h3 {
     width: 100%;
-    text-align: center;;
+    text-align: center;
+    ;
   }
+
   input {
     width: 25rem;
 
+  }
+
+  .active {
+    background: rgb(120, 240, 142);
   }
 }
