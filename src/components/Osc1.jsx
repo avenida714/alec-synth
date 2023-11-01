@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Osc1({changeFreq, freq, changeDetune, detune}) {
+function Osc1({change, settings}) {
   return (
     <div className='control'>
       <h2>Oscillator 1</h2>
@@ -8,8 +8,8 @@ function Osc1({changeFreq, freq, changeDetune, detune}) {
       <div className="param">
         <h3>Frequency</h3>
       <input
-      value={freq}
-      onChange={changeFreq}
+      value={settings.frequency}
+      onChange={change}
       max="5000"
       type='range'
       id='frequency'></input>
@@ -18,8 +18,8 @@ function Osc1({changeFreq, freq, changeDetune, detune}) {
     <div className="param">
         <h3>Detune</h3>
       <input
-      value={detune}
-      onChange={changeDetune}
+      value={settings.detune}
+      onChange={change}
       max="100"
       type='range'
       id='detune'></input>
