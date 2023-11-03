@@ -2,6 +2,8 @@ import React from "react";
 import Osc1 from "./components/Osc1";
 import Filter from "./components/Filter";
 import "./App.scss";
+import { osc1 } from "./context/Store";
+
 
 function App() {
 
@@ -9,6 +11,10 @@ function App() {
     <>
       <div className="App">
         <h1 className="center">Alec-Synth</h1>
+        <div >
+        <button onClick={() => osc1.start()}>start</button>
+        <button onClick={() => osc1.stop()}>stop</button>
+      </div>
         <Osc1 />
         <Filter />
       </div>

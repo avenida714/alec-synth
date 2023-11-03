@@ -7,7 +7,7 @@ const actx = new AudioContext();
 const out = actx.destination;
 
 //this is our first oscillator. think of it like a string; synthesis vibration
-const osc1 = actx.createOscillator();
+export const osc1 = actx.createOscillator();
 
 // all oscillators need a gain in order to have sound.
 const gain1 = actx.createGain();
@@ -30,12 +30,12 @@ export function reducer(state, action) {
   const { id, value } = action.payload || {};
 
   switch (action.type) {
-    case "START_OSC":
-      osc1.start();
-      return { ...state };
-    case "STOP_OSC":
-      osc1.stop();
-      return { ...state };
+    // case "START_OSC":
+    //   osc1.start();
+    //   return { ...state };
+    // case "STOP_OSC":
+    //   osc1.stop();
+    //   return { ...state };
     case "CHANGE_OSC1":{
       osc1[id].value = value;
       return { ...state, osc1Settings: { ...state.osc1Settings, [id]: value } };

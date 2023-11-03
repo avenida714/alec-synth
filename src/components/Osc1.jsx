@@ -19,10 +19,7 @@ function Osc1() {
   return (
     <div className="control">
       <h2>Oscillator 1</h2>
-      <div >
-        <button onClick={() => updateState({type: "START_OSC"})}>start</button>
-        <button onClick={() => updateState({type: "STOP_OSC"})}>stop</button>
-      </div>
+
 
       <div className="param">
         <h3>Frequency</h3>
