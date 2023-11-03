@@ -30,11 +30,41 @@ const Filter = ({ change, settings, changeType }) => {
       </div>
       <div className="params">
         <h3>Filter Type</h3>
-        <button onClick={changeType} id="lowpass" className={`${type==="lowpass" && "active"}`}>Lowpass</button>
-        <button onClick={changeType} id="highpass" className={`${type==="highpass" && "active"}`}>Highpass</button>
-        <button onClick={changeType} id="notch" className={`${type==="notch" && "active"}`}>Notch</button>
-        <button onClick={changeType} id="lowshelf" className={`${type==="lowshelf" && "active"}`}>Lowshelf</button>
-        <button onClick={changeType} id="highshelf" className={`${type==="highshelf" && "active"}`}>Highshelf</button>
+        <button
+          onClick={changeType}
+          id="lowpass"
+          className={`${type === "lowpass" && "active"}`}
+        >
+          Lowpass
+        </button>
+        <button
+          onClick={changeType}
+          id="highpass"
+          className={`${type === "highpass" && "active"}`}
+        >
+          Highpass
+        </button>
+        <button
+          onClick={changeType}
+          id="notch"
+          className={`${type === "notch" && "active"}`}
+        >
+          Notch
+        </button>
+        <button
+          onClick={changeType}
+          id="lowshelf"
+          className={`${type === "lowshelf" && "active"}`}
+        >
+          Lowshelf
+        </button>
+        <button
+          onClick={changeType}
+          id="highshelf"
+          className={`${type === "highshelf" && "active"}`}
+        >
+          Highshelf
+        </button>
       </div>
     </div>
   );

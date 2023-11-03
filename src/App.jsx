@@ -57,15 +57,15 @@ function App() {
     setOsc1Settings({...osc1Settings, type: id})
   };
 
-  const changeFilter = e => {
-    const {value, id} = e.target;
+  const changeFilter = (e) => {
+    const { value, id } = e.target;
     setFilterSettings({...filterSettings, [id]: value});
     filter[id].value = value;
   }
 
-  const changeFilterType = e => {
+  const changeFilterType = (e) => {
     const {id} = e.target;
-    setFilterSettings({...filterSettings, type: [id]});
+    setFilterSettings({...filterSettings, type: id});
     filter.type = id;
   }
 
