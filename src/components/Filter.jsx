@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-
+import { CTX } from "../context/Store";
 
 const Filter = () => {
   const [appState, updateState] = useContext(CTX);

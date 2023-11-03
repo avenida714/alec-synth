@@ -2,26 +2,26 @@ import React, { useContext } from "react";
 import { CTX } from "../context/Store";
 
 function Osc1() {
-  const [appState, updateAppState] = useContext(CTX);
+  const [appState, updateState] = useContext(CTX);
 
-  const { type, frequency, detune } = appState.os1Settings;
+  const { type, frequency, detune } = appState.osc1Settings;
 
   const change = (e) => {
     const { id, value } = e.target;
-    updateAppState({ type: "CHANGE_OSC1", payload: { id, value } });
+    updateState({ type: "CHANGE_OSC1", payload: { id, value } });
   };
 
   const changeType = (e) => {
     const { id } = e.target;
-    updateAppState({ type: "CHANGE_OSC1_TYPE", payload: { id } });
+    updateState({ type: "CHANGE_OSC1_TYPE", payload: { id } });
   };
 
   return (
     <div className="control">
       <h2>Oscillator 1</h2>
       <div >
-        <button onClick={() => updateAppState({type: "START_OSC"})}>start</button>
-        <button onClick={() => updateAppState({type: "STOP_OSC"})}>stop</button>
+        <button onClick={() => updateState({type: "START_OSC"})}>start</button>
+        <button onClick={() => updateState({type: "STOP_OSC"})}>stop</button>
       </div>
 
       <div className="param">
