@@ -63,6 +63,12 @@ function App() {
     filter[id].value = value;
   }
 
+  const changeFilterType = e => {
+    const {id} = e.target;
+    setFilterSettings({...filterSettings, type: [id]});
+    filter.type = id;
+  }
+
   //notice with these buttons, you still can't start more than once; this is why Tone.js is important TODO
   return (
     <>
@@ -78,6 +84,7 @@ function App() {
         <Filter
         change={changeFilter}
         settings={filterSettings}
+        changeType={changeFilterType}
         />
       </div>
     </>
