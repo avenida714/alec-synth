@@ -4,6 +4,12 @@ body {
   font-family: sans-serif;
 }
 
+.center {
+  transform: translateX(-50%);
+  margin-left: 50%;
+  text-align: center;
+}
+
 .control {
   background: rgb(28, 53, 28); // Slightly darker green for control backgrounds
   display: flex;
@@ -34,6 +40,8 @@ body {
     transition: all 0.2s ease;
     border-radius: 1rem;
     cursor: pointer;
+    width: 10rem;
+    border-radius: 3rem;
     &:hover {
       background: rgb(180, 180, 180); // Light gray for hover
     }
