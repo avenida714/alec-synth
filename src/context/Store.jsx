@@ -47,6 +47,10 @@ export function reducer(state, action) {
     case "CHANGE_FILTER":
       filter[id].value = value;
       return {...state, filterSettings: {...state.filterSettings, [id]: value}}
+    case "CHANGE_FILTER_TYPE": {
+        filter.type = id;
+        return {...state, filterSettings: {...state.filterSettings, type: id}}
+      }
     default:
       console.log(
         "THERE WAS AN ERROR WITH THE REDUCER. This was the action: ",
