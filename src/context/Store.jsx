@@ -27,11 +27,14 @@ const CTX = React.createContext();
 export { CTX };
 
 export function reducer(state, action) {
-  const { id, value } = action.payload;
+  const { id, value } = action.payload || {};
 
   switch (action.type) {
     case "START_OSC":
       osc1.start();
+      return { ...state };
+    case "STOP_OSC":
+      osc1.stop();
       return { ...state };
     case "CHANGE_OSC1":{
       osc1[id].value = value;
@@ -41,11 +44,15 @@ export function reducer(state, action) {
       osc1.type = id;
       return {...state, osc1Settings: {...state.osc1Settings, type: id}}
     }
-    case "defalut":
+    case "CHANGE_FILTER":
+      filter[id].value = value;
+      return {...state, filterSettings: {...state.filterSettings, [id]: value}}
+    default:
       console.log(
         "THERE WAS AN ERROR WITH THE REDUCER. This was the action: ",
         action
       );
+      return {...state};
   }
 }
 
@@ -64,5 +71,5 @@ export default function Store(props) {
       type: filter.type,
     },
   });
-  return <CTX.Provider value={stateHook}>{props.children}</CTX.Provider>;
+  return <CTX.Provider value={stateHook}>{props.children}</CTX.Provider>
 }
