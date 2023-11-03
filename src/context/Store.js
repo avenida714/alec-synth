@@ -24,24 +24,37 @@ filter.connect(out);
 
 const CTX = React.createContext();
 
-export {CTX};
+export { CTX };
 
 export function reducer(state, action) {
-  switch(action.type) {
+  const { id, value } = action.payload;
+
+  switch (action.type) {
     case "START_OSC":
-      //web audio start oscillator
-    return {...state}
+      osc1.start();
+      return { ...state };
+    case "CHANGE_OSC1":{
+      osc1[id].value = value;
+      return { ...state, osc1Settings: { ...state.osc1Settings, [id]: value } };
+    }
+    case "CHANGE_OSC1_TYPE": {
+      osc1.type = id;
+      return {...state, osc1Settings: {...state.osc1Settings, type: id}}
+    }
     case "defalut":
-      console.log("THERE WAS AN ERROR WITH THE REDUCER. This was the action: ", action)
+      console.log(
+        "THERE WAS AN ERROR WITH THE REDUCER. This was the action: ",
+        action
+      );
   }
 }
 
 export default function Store(props) {
   const stateHook = React.useReducer(reducer, {
     osc1Settings: {
-    frequency: osc1.frequency.value,
-    detune: osc1.detune.value,
-    type: osc1.type,
+      frequency: osc1.frequency.value,
+      detune: osc1.detune.value,
+      type: osc1.type,
     },
     filterSettings: {
       frequency: filter.frequency.value,
@@ -49,7 +62,7 @@ export default function Store(props) {
       Q: filter.Q.value,
       gain: filter.gain.value,
       type: filter.type,
-    }
-  })
-  return <CTX.Provider value={stateHook}>{props.children}</CTX.Provider>
+    },
+  });
+  return <CTX.Provider value={stateHook}>{props.children}</CTX.Provider>;
 }
