@@ -28,6 +28,7 @@ const Filter = ({ change, settings, changeType }) => {
         <h3>Gain</h3>
         <input value={gain} type="range" onChange={change} id="gain" max="10" />
       </div>
+
       <div className="params">
         <h3>Filter Type</h3>
         <button
