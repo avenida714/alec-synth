@@ -1,92 +1,66 @@
 import React from "react";
-import { useState } from "react";
 import Osc1 from "./components/Osc1";
 import Filter from "./components/Filter";
 import "./App.scss";
+import { osc1 } from "./context/Store";
 
-// create our audio context as one instance; our react state will match our web audio current state
-const actx = new AudioContext();
-
-//this is our out, think of it like an amp
-const out = actx.destination;
-
-//this is our first oscillator. think of it like a string; synthesis vibration
-const osc1 = actx.createOscillator();
-
-// all oscillators need a gain in order to have sound.
-const gain1 = actx.createGain();
-
-//set up the biquad filter
-const filter = actx.createBiquadFilter();
-
-//connect our first oscillator to our first gain
-osc1.connect(gain1);
-//connect the gain to the filter
-gain1.connect(filter);
-//connect the filter to the out
-filter.connect(out);
 
 function App() {
-  const [osc1Settings, setOsc1Settings] = useState({
-    frequency: osc1.frequency.value,
-    detune: osc1.detune.value,
-    type: osc1.type,
-  });
 
-  const [filterSettings, setFilterSettings] = useState({
-    frequency: filter.frequency.value,
-    detune: filter.detune.value,
-    Q: filter.Q.value,
-    gain: filter.gain.value,
-    type: filter.type,
-  });
-
-  const changeOsc1 = (e) => {
-    const { value, id } = e.target;
-    setOsc1Settings({ ...osc1Settings, [id]: value });
-    osc1[id].value = value;
-  };
-
-  const osc1Type = (e) => {
-    const { id } = e.target;
-    osc1.type = id;
-    setOsc1Settings({ ...osc1Settings, type: id });
-  };
-
-  const changeFilter = (e) => {
-    const { value, id } = e.target;
-    setFilterSettings({ ...filterSettings, [id]: value });
-    filter[id].value = value;
-  };
-
-  const changeFilterType = (e) => {
-    const { id } = e.target;
-    setFilterSettings({ ...filterSettings, type: id });
-    filter.type = id;
-  };
-
-  //notice with these buttons, you still can't start more than once; this is why Tone.js is important TODO
   return (
     <>
       <div className="App">
         <h1 className="center">Alec-Synth</h1>
-        <div className="center">
-          <button onClick={() => osc1.start()}>start</button>
-          <button onClick={() => osc1.stop()}>stop</button>
-        </div>
-        <Osc1
-          change={changeOsc1}
-          settings={osc1Settings}
-          changeType={osc1Type}
-        />
-        <Filter
-          change={changeFilter}
-          settings={filterSettings}
-          changeType={changeFilterType}
-        />
+        <div >
+        <button onClick={() => osc1.start()}>start</button>
+        <button onClick={() => osc1.stop()}>stop</button>
+      </div>
+        <Osc1 />
+        <Filter />
       </div>
     </>
   );
 }
 
 export default App;
+
+/*
+
+Uncaught DOMException: AudioScheduledSourceNode.start: Can't call start() more than once
+    reducer Store.jsx:34
+    React 3
+    Store Store.jsx:60
+    React 17
+    onClick Osc1.jsx:23
+    React 23
+    <anonymous> main.jsx:7
+Store.jsx:34:6
+    reducer Store.jsx:34
+    React 3
+    Store Store.jsx:60
+    React 17
+    onClick Osc1.jsx:23
+    React 19
+    forEach self-hosted:4409
+    React 4
+    <anonymous> main.jsx:7
+The above error occurred in the <Store> component:
+
+Store@http://127.0.0.1:5173/src/context/Store.jsx:83:27
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. 127.0.0.1:5173:12966:25
+Uncaught DOMException: AudioScheduledSourceNode.start: Can't call start() more than once
+    reducer Store.jsx:34
+    React 3
+    Store Store.jsx:60
+    React 14
+    onClick Osc1.jsx:23
+    React 23
+    <anonymous> main.jsx:7
+Store.jsx:34:6
+Source map error: Error: request failed with status 404
+Resource URL: null
+Source Map URL: react_devtools_backend_compact.js.map
+
+*/

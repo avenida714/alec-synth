@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CTX } from "../context/Store";
 
-function Osc1({ change, settings, changeType }) {
-  const { type, frequency, detune } = settings;
+function Osc1() {
+  const [appState, updateState] = useContext(CTX);
+
+  const { type, frequency, detune } = appState.osc1Settings;
+
+  const change = (e) => {
+    const { id, value } = e.target;
+    updateState({ type: "CHANGE_OSC1", payload: { id, value } });
+  };
+
+  const changeType = (e) => {
+    const { id } = e.target;
+    updateState({ type: "CHANGE_OSC1_TYPE", payload: { id } });
+  };
+
   return (
     <div className="control">
       <h2>Oscillator 1</h2>
+
 
       <div className="param">
         <h3>Frequency</h3>
